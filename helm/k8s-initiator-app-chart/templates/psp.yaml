@@ -1,0 +1,53 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: {{ template "initiator.fullname" . }}-psp
+  labels:
+    app: {{ template "initiator.fullname" . }}
+spec:
+  privileged: false
+  fsGroup:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  runAsGroup:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+    - 'configMap'
+    - 'secret'
+  allowPrivilegeEscalation: false
+  hostNetwork: false
+  hostIPC: false
+  hostPID: false
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ template "initiator.fullname" . }}-psp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ template "initiator.fullname" . }}-psp
+subjects:
+- kind: ServiceAccount
+  name: {{ template "initiator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ template "initiator.fullname" . }}-psp
+rules:
+- apiGroups:
+  - extensions
+  - policy/v1beta1
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+  resourceNames:
+  - {{ template "initiator.fullname" . }}-psp

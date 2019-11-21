@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "initiator.fullname" . }}
+data:
+  resources.yaml: |
+{{- range $key, $file := .Values.files }}
+    ---
+{{ $file | indent 4 }}
+{{- end }}

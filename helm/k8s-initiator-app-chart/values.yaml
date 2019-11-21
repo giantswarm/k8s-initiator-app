@@ -1,0 +1,24 @@
+
+files:
+- |
+  apiVersion: extensions/v1beta1
+  kind: PodSecurityPolicy
+  metadata:
+    name: restricted
+  spec:
+    allowPrivilegeEscalation: true
+    fsGroup:
+      rule: RunAsAny
+    runAsUser:
+      rule: RunAsAny
+    seLinux:
+      rule: RunAsAny
+    supplementalGroups:
+      rule: RunAsAny
+    volumes:
+    - emptyDir
+    - secret
+    - downwardAPI
+    - configMap
+    - persistentVolumeClaim
+    - projected

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ template "initiator.fullname" . }}
+  labels:
+    app: {{ template "initiator.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "initiator.fullname" . }}
+  template:
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: {{ template "initiator.fullname" . }}
+      labels:
+        app: {{ template "initiator.fullname" . }}
+      annotations:
+        releasetime: {{ $.Release.Time }}
+    spec:
+      tolerations:
+      # Run only master 
+      - effect: NoSchedule
+        operator: "Exists"
+        key: node-role.kubernetes.io/master
+      nodeSelector:
+        kubernetes.io/role: master
+      serviceAccountName: {{ template "initiator.fullname" . }}
+      containers:
+      - name: pause
+        image: gcr.io/google_containers/pause-amd64:3.0
+      initContainers:
+      - name: k8s-initiator
+        image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
+        volumeMounts:
+        - name: config
+          mountPath: /etc/k8s-initiator
+      volumes:
+      - name: config
+        configMap:
+          name: {{ template "initiator.fullname" . }}

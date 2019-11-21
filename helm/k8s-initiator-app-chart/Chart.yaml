@@ -1,0 +1,8 @@
+apiVersion: v1
+home: https://github.com/giantswarm/k8s-initiator-app
+description: The k8s initiator runs in master and apply some configuration when master is new.
+icon: https://s3.amazonaws.com/downloads.kong/universe/assets/icon-kong-inc-large.png
+name: k8s-initiator-app
+sources:
+- https://github.com/giantswarm/k8s-initiator-app
+version: 0.1.0
