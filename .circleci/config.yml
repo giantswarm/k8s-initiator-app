@@ -1,14 +1,14 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@0.2.0
+  architect: giantswarm/architect@0.8.5
 
 workflows:
   package-and-push-chart-on-tag:
     jobs:
       - architect/push-to-app-catalog:
           name: "package and push k8s-initiator-app chart"
-          app_catalog: "giantswarm-incubator-catalog"
-          app_catalog_test: "giantswarm-incubator-test-catalog"
+          app_catalog: "giantswarm-playground-catalog"
+          app_catalog_test: "giantswarm-playground-test-catalog"
           chart: "k8s-initiator-app"
           # Trigger job on git tag.
           filters:
