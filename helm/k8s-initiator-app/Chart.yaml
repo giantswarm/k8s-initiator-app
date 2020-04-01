@@ -5,4 +5,4 @@ icon: https://github.com/kubernetes/kubernetes/blob/master/logo/logo.png
 name: k8s-initiator-app
 sources:
 - https://github.com/giantswarm/k8s-initiator-app
-version: v0.1.0
+version: [[ .Version ]]
