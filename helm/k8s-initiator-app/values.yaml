@@ -1,3 +1,8 @@
 files:
 - |
   ---
+command:
+  - sh
+  - -c
+  - |
+    echo "No command set"
