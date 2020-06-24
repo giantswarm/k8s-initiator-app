@@ -33,7 +33,8 @@ spec:
       initContainers:
       - name: bash-initiator
         image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
-        command: {{ .Values.command }}
+        command:
+{{ toYaml .Values.command | indent 10 }}
         securityContext:
           runAsUser: 0
           runAsGroup: 0
