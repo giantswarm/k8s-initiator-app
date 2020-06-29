@@ -30,6 +30,7 @@ files:
     - projected
 ```
 
+It will create or overwrite the pod security policy `restricted` even if cluster is upgraded.
 
 
 This will set the OIDC settings of a cluster. If available please use the CR to set OIDC, only use this as a last resource.
