@@ -20,7 +20,7 @@ spec:
         releasetime: {{ $.Release.Time }}
     spec:
       tolerations:
-      # Run only master 
+      # Run only master
       - effect: NoSchedule
         operator: "Exists"
         key: node-role.kubernetes.io/master
@@ -31,6 +31,16 @@ spec:
       - name: pause
         image: gcr.io/google_containers/pause-amd64:3.0
       initContainers:
+      - name: bash-initiator
+        image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
+        command:
+{{ toYaml .Values.command | indent 10 }}
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+        volumeMounts:
+        - name: manifests-volume
+          mountPath: /manifests
       - name: k8s-initiator
         image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
         volumeMounts:
@@ -40,3 +50,6 @@ spec:
       - name: config
         configMap:
           name: {{ template "initiator.fullname" . }}
+      - name: manifests-volume
+        hostPath:
+          path: /etc/kubernetes/manifests

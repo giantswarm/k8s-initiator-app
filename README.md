@@ -31,3 +31,27 @@ files:
 ```
 
 It will create or overwrite the pod security policy `restricted` even if cluster is upgraded.
+
+
+```yaml
+command:
+  - sh
+  - -c
+  - |
+    APIMANIFEST=/manifests/k8s-api-server.yaml
+    ISSUERURL=https://test.com
+    CLIENTID=123123
+    CLAIM=email
+    if ! grep -q oidc-client-id $APIMANIFEST; then
+      echo "OIDC Settings not present, applying"
+      echo "Previous API yaml"
+      cat $APIMANIFEST
+      awk '/feature-gates/ { print; print "    - --oidc-issuer-url=$ISSUERURL\n    - --oidc-client-id=$CLIENTID\n    - --oidc-username-claim=$CLAIM"; next }1' $APIMANIFEST > /tmp/tmp_api.yaml
+      mv /tmp/tmp_api.yaml $APIMANIFEST
+      echo "New api yaml:"
+      cat $APIMANIFEST
+    else
+      echo "OIDC Settings present"
+    fi
+```
+This will set the OIDC settings of a cluster. If available please use the CR to set OIDC, only use this as a las resource.

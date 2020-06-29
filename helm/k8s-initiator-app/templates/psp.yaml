@@ -19,6 +19,7 @@ spec:
   volumes:
     - 'configMap'
     - 'secret'
+    - 'hostPath'
   allowPrivilegeEscalation: false
   hostNetwork: false
   hostIPC: false
@@ -36,7 +37,7 @@ subjects:
 - kind: ServiceAccount
   name: {{ template "initiator.fullname" . }}
   namespace: {{ .Release.Namespace }}
---- 
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
