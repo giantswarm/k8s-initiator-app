@@ -17,7 +17,7 @@ spec:
       labels:
         app: {{ template "initiator.fullname" . }}
       annotations:
-        releasetime: {{ $.Release.Time }}
+        releasetime: {{ now | quote }}
     spec:
       tolerations:
       # Run only master
