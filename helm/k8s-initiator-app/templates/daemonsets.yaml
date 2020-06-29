@@ -19,18 +19,13 @@ spec:
       annotations:
         releasetime: {{ now | quote }}
     spec:
-      tolerations:
-      # Run only master
-      - effect: NoSchedule
-        operator: "Exists"
-        key: node-role.kubernetes.io/master
-      nodeSelector:
-        kubernetes.io/role: master
+{{ include "initiator.nodeSelector" . | indent 6 }}
       serviceAccountName: {{ template "initiator.fullname" . }}
       containers:
       - name: pause
         image: gcr.io/google_containers/pause-amd64:3.0
       initContainers:
+{{ if has "bash" .Values.initiators }}
       - name: bash-initiator
         image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
         command:
@@ -41,11 +36,16 @@ spec:
         volumeMounts:
         - name: manifests-volume
           mountPath: /manifests
+{{- include "initiator.extraVolumeMounts" . | indent 8 -}}
+{{ end }}
+{{ if has "k8s" .Values.initiators }}
       - name: k8s-initiator
         image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
         volumeMounts:
         - name: config
           mountPath: /etc/k8s-initiator
+{{- include "initiator.extraVolumeMounts" . | indent 8 -}}
+{{ end }}
       volumes:
       - name: config
         configMap:
@@ -53,3 +53,4 @@ spec:
       - name: manifests-volume
         hostPath:
           path: /etc/kubernetes/manifests
+{{- include "initiator.extraVolumes" . | indent 6 }}

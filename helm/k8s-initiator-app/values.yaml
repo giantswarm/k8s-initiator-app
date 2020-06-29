@@ -6,3 +6,12 @@ command:
   - -c
   - |
     echo "No command set"
+
+psp:
+  privileged: false
+masterOnly: true
+nodeSelector: {}
+initiators:
+  - bash
+  - k8s
+extraHostPaths: []

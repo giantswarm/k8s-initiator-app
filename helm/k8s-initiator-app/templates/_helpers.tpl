@@ -18,3 +18,35 @@
 {{- define "initiator.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{- define "initiator.nodeSelector" -}}
+{{- if .Values.masterOnly -}}
+tolerations:
+- effect: NoSchedule
+  operator: "Exists"
+  key: node-role.kubernetes.io/master
+nodeSelector:
+  kubernetes.io/role: master
+{{- else if .Values.nodeSelector }}
+nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 2 }}
+{{- end -}}
+{{- end -}}
+
+
+{{- define "initiator.extraVolumes" -}}
+{{- range .Values.extraHostPaths }}
+- name: {{ .name }}
+  hostPath:
+    path: {{ .hostPath }}
+{{- end }}
+{{- end -}}
+
+{{- define "initiator.extraVolumeMounts" -}}
+{{- range .Values.extraHostPaths }}
+- name: {{ .name }}
+  mountPath: {{ .mountPath }}
+{{- end }}
+{{- end -}}
+
+
