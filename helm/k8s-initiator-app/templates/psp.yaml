@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "initiator.fullname" . }}
 spec:
-  privileged: false
+  privileged: {{ .Values.psp.privileged }}
   fsGroup:
     rule: RunAsAny
   runAsUser:
