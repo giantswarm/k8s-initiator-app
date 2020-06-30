@@ -15,12 +15,21 @@ subjects:
 - kind: ServiceAccount
   name: {{ template "initiator.fullname" . }}
   namespace: {{ .Release.Namespace }}
---- 
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ template "initiator.fullname" . }}
 rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - update
+  - patch
+  - get
+  - list
 - apiGroups:
   - extensions
   resources:
