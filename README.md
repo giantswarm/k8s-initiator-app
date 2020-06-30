@@ -2,7 +2,7 @@
 
 An application that runs as daemonset only in the master nodes to maintain the state of some Kubernetes resources through cluster upgrades or master replacements.
 
-As an example to persist a Pod Security Policy you can provide this values configuration at installation time
+As an example to persist a Pod Security Policy you can provide this values configuration at installation time it will create or overwrite the pod security policy `restricted` even if cluster is upgraded:
 
 ```yaml
 files:
@@ -30,9 +30,9 @@ files:
     - projected
 ```
 
-It will create or overwrite the pod security policy `restricted` even if cluster is upgraded.
 
 
+This will set the OIDC settings of a cluster. If available please use the CR to set OIDC, only use this as a last resource.
 ```yaml
 command:
   - sh
@@ -54,4 +54,3 @@ command:
       echo "OIDC Settings present"
     fi
 ```
-This will set the OIDC settings of a cluster. If available please use the CR to set OIDC, only use this as a las resource.
