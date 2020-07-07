@@ -5,7 +5,7 @@ command:
   - sh
   - -c
   - |
-    echo "No command set" 
+    echo "No command set"
 
 # container resources
 resources: {}
