@@ -25,6 +25,7 @@ spec:
       containers:
       - name: pause
         image: gcr.io/google_containers/pause-amd64:3.0
+        resources:
 {{ toYaml .Values.resources | indent 10 }}
       initContainers:
 {{ if has "bash" .Values.initiators }}
