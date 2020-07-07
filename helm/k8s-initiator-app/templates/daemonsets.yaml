@@ -19,11 +19,13 @@ spec:
       annotations:
         releasetime: {{ now | quote }}
     spec:
+      priorityClassName: {{ .Values.priority_class }}
 {{ include "initiator.nodeSelector" . | indent 6 }}
       serviceAccountName: {{ template "initiator.fullname" . }}
       containers:
       - name: pause
         image: gcr.io/google_containers/pause-amd64:3.0
+{{ toYaml .Values.resources | indent 10 }}
       initContainers:
 {{ if has "bash" .Values.initiators }}
       - name: bash-initiator
