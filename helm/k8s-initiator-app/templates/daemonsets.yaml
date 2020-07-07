@@ -19,7 +19,7 @@ spec:
       annotations:
         releasetime: {{ now | quote }}
     spec:
-      priorityClassName: {{ .Values.priority_class }}
+      priorityClassName: {{ .Values.priorityClassName }}
 {{ include "initiator.nodeSelector" . | indent 6 }}
       serviceAccountName: {{ template "initiator.fullname" . }}
       containers:

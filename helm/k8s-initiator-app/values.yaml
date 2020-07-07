@@ -5,13 +5,13 @@ command:
   - sh
   - -c
   - |
-    echo "No command set"
+    echo "No command set" 
 
 # container resources
 resources: {}
 
 # Make room to run the pod
-priority_class: system-node-critical
+priorityClassName: system-node-critical
 
 psp:
   privileged: false
