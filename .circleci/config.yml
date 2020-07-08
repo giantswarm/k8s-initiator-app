@@ -8,6 +8,7 @@ workflows:
       - architect/push-to-docker:
           name: push-k8s-initiator-to-quay
           image: "quay.io/giantswarm/k8s-initiator"
+          context: architect
           username_envar: "QUAY_USERNAME"
           password_envar: "QUAY_PASSWORD"
           # Needed to trigger job also on git tag.
@@ -25,6 +26,7 @@ workflows:
       - architect/push-to-docker:
           name: push-k8s-initiator-to-aliyun-pr
           image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-initiator"
+          context: architect
           username_envar: "ALIYUN_USERNAME"
           password_envar: "ALIYUN_PASSWORD"
           # Push to Aliyun should execute for non-master branches only once manually approved.
@@ -39,6 +41,7 @@ workflows:
       - architect/push-to-docker:
           name: push-k8s-initiator-to-aliyun-master
           image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-initiator"
+          context: architect
           username_envar: "ALIYUN_USERNAME"
           password_envar: "ALIYUN_PASSWORD"
           # Needed to trigger job only on merge to master.
@@ -50,6 +53,7 @@ workflows:
           name: "package and push k8s-initiator-app chart"
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
+          context: architect
           chart: "k8s-initiator-app"
           # Trigger job on git tag.
           filters:
