@@ -7,6 +7,15 @@ command:
   - |
     echo "No command set"
 
+image:
+  registry: quay.io
+  k8sInitiatorContainerImage:
+    name: giantswarm/k8s-initiator
+    tag: [[ .Version ]]
+  pauseContainerImage:
+    name: giantswarm/pause-amd64
+    tag: 3.0
+
 # container resources
 resources: {}
 

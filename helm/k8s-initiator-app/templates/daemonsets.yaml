@@ -24,13 +24,13 @@ spec:
       serviceAccountName: {{ template "initiator.fullname" . }}
       containers:
       - name: pause
-        image: gcr.io/google_containers/pause-amd64:3.0
+        image: {{ .Values.image.registry }}/{{ .Values.image.pauseContainerImage.name }}:{{ .Values.image.pauseContainerImage.tag }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
       initContainers:
 {{ if has "bash" .Values.initiators }}
       - name: bash-initiator
-        image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
+        image: {{ .Values.image.registry }}/{{ .Values.image.k8sInitiatorContainerImage.name }}:{{ .Values.image.k8sInitiatorContainerImage.tag }}
         command:
 {{ toYaml .Values.command | indent 10 }}
         securityContext:
@@ -43,7 +43,7 @@ spec:
 {{ end }}
 {{ if has "k8s" .Values.initiators }}
       - name: k8s-initiator
-        image: quay.io/giantswarm/k8s-initiator:{{ .Chart.Version }}
+        image: {{ .Values.image.registry }}/{{ .Values.image.k8sInitiatorContainerImage.name }}:{{ .Values.image.k8sInitiatorContainerImage.tag }}
         volumeMounts:
         - name: config
           mountPath: /etc/k8s-initiator
