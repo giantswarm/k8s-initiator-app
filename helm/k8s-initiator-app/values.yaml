@@ -14,7 +14,7 @@ image:
     tag: [[ .Version ]]
   pauseContainerImage:
     name: giantswarm/pause-amd64
-    tag: 3.0
+    tag: 3.3
 
 # container resources
 resources: {}
