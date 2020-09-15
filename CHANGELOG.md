@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support Affinity rules
+
 ## [0.7.0] - 2020-09-15
 
 ### Added
