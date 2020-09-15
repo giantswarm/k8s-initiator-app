@@ -33,6 +33,10 @@ nodeSelector:
 {{- end -}}
 {{- end -}}
 
+{{- define "initiator.affinity" -}}
+affinity:
+{{ toYaml .Values.affinity | indent 2 }}
+{{- end -}}
 
 {{- define "initiator.extraVolumes" -}}
 {{- range .Values.extraHostPaths }}
