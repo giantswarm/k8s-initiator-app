@@ -26,6 +26,7 @@ psp:
   privileged: false
 masterOnly: true
 nodeSelector: {}
+affinity: {}
 initiators:
   - bash
   - k8s
