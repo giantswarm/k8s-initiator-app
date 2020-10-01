@@ -40,6 +40,8 @@ spec:
         volumeMounts:
         - name: manifests-volume
           mountPath: /manifests
+        - name: policies-volume
+          mountPath: /policies
 {{- include "initiator.extraVolumeMounts" . | indent 8 -}}
 {{ end }}
 {{ if has "k8s" .Values.initiators }}
@@ -57,4 +59,7 @@ spec:
       - name: manifests-volume
         hostPath:
           path: /etc/kubernetes/manifests
+      - name: policies-volume
+        hostPath:
+          path: /etc/kubernetes/policies
 {{- include "initiator.extraVolumes" . | indent 6 }}
