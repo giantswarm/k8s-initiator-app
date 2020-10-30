@@ -2,7 +2,7 @@
 
 An application that runs as daemonset only in the master nodes (by default) to maintain the state of some Kubernetes resources through cluster upgrades or master replacements.
 
-As an example to persist a Pod Security Policy you can provide this values configuration at installation time it will create or overwrite the pod security policy `restricted` even if cluster is upgraded:
+For example: To persist a Pod Security Policy, provide this values configuration at installation time. When a cluster is upgraded, it will either create `restricted` or overwrite the pod security policy to `restricted`.
 
 ```yaml
 files:
