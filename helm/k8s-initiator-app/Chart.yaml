@@ -3,7 +3,7 @@ appVersion: "v0.9.0"
 home: https://github.com/giantswarm/k8s-initiator-app
 description: The k8s initiator runs in a master node and applies some configuration when the master is new.
 engine: gotpl
-icon: https://github.com/kubernetes/kubernetes/blob/master/logo/logo.png
+icon: https://s.giantswarm.io/app-icons/1/png/k8s-initiator-app-light.png
 name: k8s-initiator-app
 sources:
 - https://github.com/giantswarm/k8s-initiator-app
