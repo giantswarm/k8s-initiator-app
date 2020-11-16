@@ -19,12 +19,20 @@
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "initiator.nodeSelector" -}}
+{{- define "initiator.tolerations" -}}
 {{- if .Values.masterOnly -}}
 tolerations:
 - effect: NoSchedule
   operator: "Exists"
   key: node-role.kubernetes.io/master
+{{- else if .Values.tolerations }}
+tolerations:
+{{ toYaml .Values.tolerations | indent 2 }}
+{{- end -}}
+{{- end -}}
+
+{{- define "initiator.nodeSelector" -}}
+{{- if .Values.masterOnly -}}
 nodeSelector:
   kubernetes.io/role: master
 {{- else if .Values.nodeSelector }}
