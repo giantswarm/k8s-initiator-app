@@ -27,6 +27,7 @@ psp:
 masterOnly: true
 nodeSelector: {}
 affinity: {}
+tolerations: {}
 initiators:
   - bash
   - k8s

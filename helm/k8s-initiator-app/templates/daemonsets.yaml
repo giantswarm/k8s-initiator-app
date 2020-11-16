@@ -22,6 +22,7 @@ spec:
       priorityClassName: {{ .Values.priorityClassName }}
 {{ include "initiator.nodeSelector" . | indent 6 }}
 {{ include "initiator.affinity" . | indent 6 }}
+{{ include "initiator.tolerations" . | indent 6 }}
       serviceAccountName: {{ template "initiator.fullname" . }}
       containers:
       - name: pause
