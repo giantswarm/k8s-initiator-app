@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Added link to README under `sources:` to render README in Web UI
+- Support user specifying `tolerations` 
 
 ## [0.9.0] - 2020-10-01
 
