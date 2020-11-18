@@ -25,6 +25,7 @@ priorityClassName: system-node-critical
 psp:
   privileged: false
 masterOnly: true
+hostNetwork: true
 nodeSelector: {}
 affinity: {}
 tolerations: {}
