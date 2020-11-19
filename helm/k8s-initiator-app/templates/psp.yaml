@@ -21,7 +21,7 @@ spec:
     - 'secret'
     - 'hostPath'
   allowPrivilegeEscalation: false
-  hostNetwork: false
+  hostNetwork: {{ .Values.hostNetwork }}
   hostIPC: false
   hostPID: false
 ---

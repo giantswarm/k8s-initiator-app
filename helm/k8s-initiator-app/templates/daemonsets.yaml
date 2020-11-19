@@ -19,6 +19,7 @@ spec:
       annotations:
         releasetime: {{ now | quote }}
     spec:
+      hostNetwork: {{ .Values.hostNetwork }}
       priorityClassName: {{ .Values.priorityClassName }}
 {{ include "initiator.nodeSelector" . | indent 6 }}
 {{ include "initiator.affinity" . | indent 6 }}
