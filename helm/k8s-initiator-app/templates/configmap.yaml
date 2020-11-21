@@ -8,3 +8,17 @@ data:
     ---
 {{ $file | indent 4 }}
 {{- end }}
+{{- if .Values.patches }}
+{{- $patchResources := list }}
+{{- range .Values.patches }}
+{{- $jsonPatch := toJson .patch }}
+{{- $ns := .namespace | default "default" }}
+{{- $cmdOptions := printf "%s -n %s -p '%s'" .resource $ns $jsonPatch }}
+{{- $patchResources = append $patchResources $cmdOptions }}
+{{- end }}
+  k8s-patches.sh: |-
+    #!/bin/bash
+{{- range $patchResources }}
+    kubectl patch {{ . }}
+{{- end }}
+{{- end }}
