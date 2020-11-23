@@ -7,6 +7,8 @@ command:
   - |
     echo "No command set"
 
+patches: []
+
 image:
   registry: quay.io
   k8sInitiatorContainerImage:
