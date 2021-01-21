@@ -1,0 +1,65 @@
+## In this example we configure API to enable PodNodeSelector admission controller.
+## If you provide a NODEPOOL ID then it will make it default node selector for your pods.
+
+command:
+- sh
+- -c
+- |
+  APIMANIFEST=/manifests/k8s-api-server.yaml
+  ADMISSIONCONTROLLER=PodNodeSelector
+  
+  #SET HERE DEFAULT NODE POOL
+  NODEPOOL=""
+
+  if [ -z ${NODEPOOL} ]
+  then
+      echo "DEFAULT NODE POOL SELECTOR NOT DEFINED"
+    else
+
+    # ANNOTATE GS NAMESPACES 
+    kubectl annotate ns kube-system scheduler.alpha.kubernetes.io/node-selector=kubernetes.io/os=linux --overwrite=true
+    kubectl annotate ns giantswarm scheduler.alpha.kubernetes.io/node-selector=kubernetes.io/os=linux --overwrite=true
+
+    # CREATE POD NODE SELECTOR CONFIG FILE
+    printf "podNodeSelectorPluginConfig:\n  clusterDefaultNodeSelector: giantswarm.io/machine-deployment=$NODEPOOL\n" > /tmp/podnodeselector.yaml && mv /tmp/podnodeselector.yaml /policies/podnodeselector.yaml && cat /policies/podnodeselector.yaml
+    
+    # CREATE ADMISSION CONFIG FILE
+    if ! grep -q admission-control-config-file $APIMANIFEST; then
+      printf "apiVersion: apiserver.config.k8s.io/v1\nkind: AdmissionConfiguration\nplugins:\n- name: PodNodeSelector\n  path: /etc/kubernetes/policies/podnodeselector.yaml\n" > /tmp/admission-config.yaml && mv /tmp/admission-config.yaml /policies/admission-config.yaml && cat /policies/admission-config.yaml
+
+      ## ADDING ADMISSION CONTROLLER CONFIGURATION FILE
+      echo "Adding the Admission Control config file and feature gate"
+      sed "/feature-gates=.*/a\ \ \ \ - --admission-control-config-file=/etc/kubernetes/policies/admission-config.yaml" $APIMANIFEST > /tmp/tmp_api.yaml
+      mv /tmp/tmp_api.yaml $APIMANIFEST
+      
+    else
+      echo "ADMISSION ALREADY DEFINED! JUST APPLIED DEFAULT NODE POOL SELECTOR"
+    fi
+  fi
+
+  ## ENABLING ADMISSION CONTROLLER
+  if ! grep -q $ADMISSIONCONTROLLER $APIMANIFEST; then
+    sed -E "s/(.*)(enable-admission-plugin.*)/\1\2,${ADMISSIONCONTROLLER}/" $APIMANIFEST > /tmp/tmp_api.yaml
+    mv /tmp/tmp_api.yaml $APIMANIFEST
+  fi
+
+  echo "API MANIFEST: "
+  cat $APIMANIFEST
+
+  sleep 10
+
+# Only need bash initiator
+initiators:
+- bash
+
+# Only makes sense to run in master(s)
+masterOnly: true
+
+# In order to annotate namespaces we need to extend RBAC
+rbac:
+  rules:
+  - apiGroup: ""
+    resource: namespaces
+    verbs:
+    - patch
+    - get

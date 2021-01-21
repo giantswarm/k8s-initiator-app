@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added link to README under `sources:` to render README in Web UI
 - Support user specifying `tolerations`
 - Add `hostNetwork` and default to `true`
+- Add support for customer RBAC rules
+- Add examples of usage.
 
 ## [0.9.0] - 2020-10-01
 

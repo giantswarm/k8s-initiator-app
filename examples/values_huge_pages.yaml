@@ -1,0 +1,45 @@
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: giantswarm.io/machine-deployment
+              operator: In
+              values:
+                - <NODEPOOL_ID_1>
+                - <NODEPOOL_ID_2>
+
+command:
+  - sh
+  - -c
+  - |
+    echo "Transparent Hugepage settings"
+    grep -q '\[never\]' /sys/kernel/mm/transparent_hugepage/enabled || echo never > /sys/kernel/mm/transparent_hugepage/enabled
+    grep -q '\[never\]' /sys/kernel/mm/transparent_hugepage/defrag || echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
+    echo "Current setting of /sys/kernel/mm/transparent_hugepage/enabled"
+    cat /sys/kernel/mm/transparent_hugepage/enabled
+
+    echo "Current setting of /sys/kernel/mm/transparent_hugepage/defrag"
+    cat /sys/kernel/mm/transparent_hugepage/defrag
+
+    for i in `kubectl get nodes -l 'giantswarm.io/machine-deployment in (<NODEPOOL_ID_1>,<NODEPOOL_ID_2>),kubernetes.io/role=worker,transparent_hugepage!=disabled' -o json | jq -r '.items[].metadata.name'`
+    do
+      kubectl label nodes $i transparent_hugepage=disabled
+    done
+
+extraHostPaths:
+  - name: sysfs
+    hostPath: /sys
+    mountPath: /sys
+  - name: procfs
+    hostPath: /proc
+    mountPath: /proc_host
+
+initiators:
+  - bash
+
+masterOnly: false
+
+nodeSelector:
+  kubernetes.io/role: worker
