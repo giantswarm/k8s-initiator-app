@@ -21,15 +21,20 @@ kind: ClusterRole
 metadata:
   name: {{ template "initiator.fullname" . }}
 rules:
+{{- range $rule := .Values.rbac.rules }}
 - apiGroups:
+  {{- if $rule.apiGroup  }}
+  - {{ $rule.apiGroup }}
+  {{- else }}
   - ""
+  {{- end }}
   resources:
-  - nodes
+  - {{ $rule.resource }}
   verbs:
-  - update
-  - patch
-  - get
-  - list
+  {{- range $verb := $rule.verbs }}
+  - {{ $verb }}
+  {{- end }}
+{{- end }}
 - apiGroups:
   - policy
   resources:

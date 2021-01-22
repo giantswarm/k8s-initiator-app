@@ -1,0 +1,32 @@
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: giantswarm.io/machine-deployment
+              operator: In
+              values:
+                - <NODEPOOL_ID_1>
+                - <NODEPOOL_ID_2>
+
+command:
+  - sh
+  - -c
+  - |
+    echo "Set vm.max_map_count"
+    echo 1048576 > /proc_host/sys/vm/max_map_count
+    echo "Current setting of vm.max_map_count"
+    cat /proc_host/sys/vm/max_map_count
+
+extraHostPaths:
+  - name: procfs
+    hostPath: /proc
+    mountPath: /proc_host
+
+initiators:
+  - bash
+
+masterOnly: false
+
+nodeSelector:
+  kubernetes.io/role: worker

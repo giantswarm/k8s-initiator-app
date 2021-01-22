@@ -1,11 +1,14 @@
-files:
-- |
-  ---
+affinity: {}
+
 command:
   - sh
   - -c
   - |
     echo "No command set"
+
+extraHostPaths: []
+
+hostNetwork: true
 
 image:
   registry: quay.io
@@ -16,20 +19,35 @@ image:
     name: giantswarm/pause-amd64
     tag: 3.3
 
-# container resources
-resources: {}
+initiators:
+  - bash
+  - k8s
+
+files:
+- |
+  ---
+
+masterOnly: true
+
+nodeSelector: {}
 
 # Make room to run the pod
 priorityClassName: system-node-critical
 
 psp:
   privileged: false
-masterOnly: true
-hostNetwork: true
-nodeSelector: {}
-affinity: {}
+
+rbac:
+  rules:
+  - apiGroup: ""
+    resource: nodes
+    verbs:
+    - update
+    - patch
+    - get
+    - list
+
+# container resources
+resources: {}
+
 tolerations: {}
-initiators:
-  - bash
-  - k8s
-extraHostPaths: []
