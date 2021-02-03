@@ -11,10 +11,9 @@ command:
   #SET HERE DEFAULT NODE POOL
   NODEPOOL=""
 
-  if [ -z ${NODEPOOL} ]
-  then
+  if [ -z ${NODEPOOL} ]; then
       echo "DEFAULT NODE POOL SELECTOR NOT DEFINED"
-    else
+  else
 
     # ANNOTATE GS NAMESPACES 
     kubectl annotate ns kube-system scheduler.alpha.kubernetes.io/node-selector=kubernetes.io/os=linux --overwrite=true
