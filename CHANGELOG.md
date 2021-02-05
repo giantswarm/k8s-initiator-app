@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.9.2] - 2020-10-19
+## [0.9.2] - 2021-02-04
 
 - Added link to README under `sources:` to render README in Web UI
 - Support user specifying `tolerations`
