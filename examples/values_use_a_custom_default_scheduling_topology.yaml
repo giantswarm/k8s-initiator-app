@@ -1,0 +1,44 @@
+## In this example we configure can to change the default scheduler configuration
+## to use 'PodTopologySpread' instead of 'SelectorSpread' as scoring system
+
+command:
+- sh
+- -c
+- |
+  CONFIG=/config/scheduler.yaml
+
+  if ! grep -q profiles $CONFIG; then
+    ## ADDING PodTopologySpread PROFILE IN SCHEDULER CONFIGURATION
+    echo "Adding scheduler plugin config to 'PodTopologySpread'"
+    printf "profiles:\n  - pluginConfig:\n    - name: PodTopologySpread\n    args:\n      defaultConstraints:\n        - maxSkew: 1\n        topologyKey: topology.kubernetes.io/hostname\n        whenUnsatisfiable: ScheduleAnyway\n      defaultingType: List" >> $CONFIG
+
+    ## DISABLE SELECTOR SPREAD PLUGIN IN SCHEDULER CONFIGURATION
+    printf "\n  - schedulerName: default-scheduler\n    plugins:\n      score:\n        disabled:\n        -name: SelectorSpread\n" >> $CONFIG
+  else
+    echo "SCHEDULER PROFILE ALREADY APPLIED!"
+  fi
+    
+  echo "SCHEDULER CONFIG: "
+  cat $CONFIG
+
+  sleep 10
+
+# Only need bash initiator
+initiators:
+- bash
+
+extraHostPaths:
+  - name: scheduler-config
+    hostPath: /etc/kubernetes/config
+    mountPath: /config
+
+# Only makes sense to run in master(s)
+masterOnly: true
+
+# In order to annotate namespaces we need to extend RBAC
+rbac:
+  rules:
+  - apiGroup: ""
+    resource: pods
+    verbs:
+    - delete
