@@ -9,4 +9,4 @@ An application that runs as daemonset only in the nodes (master only by default)
 - [Huge pages settings](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_huge_pages.yaml)
 - [OIDC parameters](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_oidc.yaml)
 - [Add PSP (overwritten default one)](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_psp_restricted.yaml)
-
+- [Add PodTopologySpread scheduler configuration](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_use_a_custom_default_scheduling_topology.yaml)
