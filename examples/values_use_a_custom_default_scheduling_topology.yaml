@@ -10,7 +10,15 @@ command:
   if ! grep -q profiles $CONFIG; then
     ## ADDING PodTopologySpread PROFILE IN SCHEDULER CONFIGURATION
     echo "Adding scheduler plugin config to 'PodTopologySpread'"
-    printf "profiles:\n  - pluginConfig:\n    - name: PodTopologySpread\n      args:\n        defaultConstraints:\n          - maxSkew: 1\n            topologyKey: topology.kubernetes.io/hostname\n            whenUnsatisfiable: ScheduleAnyway\n        defaultingType: List" >> $CONFIG
+    echo "profiles:"                                                >> $CONFIG
+    echo "  - pluginConfig:"                                        >> $CONFIG
+    echo "    - name: PodTopologySpread"                            >> $CONFIG
+    echo "      args:"                                              >> $CONFIG
+    echo "        defaultConstraints:"                              >> $CONFIG
+    echo "          - maxSkew: 1"                                   >> $CONFIG
+    echo "            topologyKey: topology.kubernetes.io/hostname" >> $CONFIG
+    echo "            whenUnsatisfiable: ScheduleAnyway"            >> $CONFIG
+    echo "        defaultingType: List"                             >> $CONFIG
   else
     echo "SCHEDULER PROFILE ALREADY APPLIED!"
   fi
