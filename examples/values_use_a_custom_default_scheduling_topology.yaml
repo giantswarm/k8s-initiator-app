@@ -16,7 +16,7 @@ command:
     echo "      args:"                                              >> $CONFIG
     echo "        defaultConstraints:"                              >> $CONFIG
     echo "          - maxSkew: 1"                                   >> $CONFIG
-    echo "            topologyKey: topology.kubernetes.io/hostname" >> $CONFIG
+    echo "            topologyKey: kubernetes.io/hostname" >> $CONFIG
     echo "            whenUnsatisfiable: ScheduleAnyway"            >> $CONFIG
     echo "        defaultingType: List"                             >> $CONFIG
   else
