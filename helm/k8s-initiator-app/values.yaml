@@ -39,9 +39,9 @@ psp:
 
 rbac:
   rules:
-  - apiGroup: 
+  - apiGroup:
     - ""
-    resource: 
+    resource:
     - nodes
     verbs:
     - update
