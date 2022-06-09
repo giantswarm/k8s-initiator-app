@@ -24,12 +24,16 @@ rules:
 {{- range $rule := .Values.rbac.rules }}
 - apiGroups:
   {{- if $rule.apiGroup  }}
-  - {{ $rule.apiGroup }}
+  {{- range $a := $rule.apiGroup }}
+  - {{ $a | quote }}
+  {{- end }}
   {{- else }}
   - ""
   {{- end }}
   resources:
-  - {{ $rule.resource }}
+  {{- range $r := $rule.resource }}
+  - {{ $r }}
+  {{- end }}
   verbs:
   {{- range $verb := $rule.verbs }}
   - {{ $verb }}
