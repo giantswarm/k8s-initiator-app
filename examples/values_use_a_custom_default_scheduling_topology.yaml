@@ -10,10 +10,15 @@ command:
   if ! grep -q profiles $CONFIG; then
     ## ADDING PodTopologySpread PROFILE IN SCHEDULER CONFIGURATION
     echo "Adding scheduler plugin config to 'PodTopologySpread'"
-    printf "profiles:\n  - schedulerName: default-scheduler\n    pluginConfig:\n    - name: PodTopologySpread\n    args:\n      defaultConstraints:\n        - maxSkew: 1\n          topologyKey: topology.kubernetes.io/hostname\n          whenUnsatisfiable: ScheduleAnyway\n      defaultingType: List" >> $CONFIG
-
-    ## DISABLE SELECTOR SPREAD PLUGIN IN SCHEDULER CONFIGURATION
-    printf "\n    plugins:\n      score:\n        disabled:\n        -name: SelectorSpread\n" >> $CONFIG
+    echo "profiles:"                                                >> $CONFIG
+    echo "  - pluginConfig:"                                        >> $CONFIG
+    echo "    - name: PodTopologySpread"                            >> $CONFIG
+    echo "      args:"                                              >> $CONFIG
+    echo "        defaultConstraints:"                              >> $CONFIG
+    echo "          - maxSkew: 1"                                   >> $CONFIG
+    echo "            topologyKey: kubernetes.io/hostname"          >> $CONFIG
+    echo "            whenUnsatisfiable: ScheduleAnyway"            >> $CONFIG
+    echo "        defaultingType: List"                             >> $CONFIG
   else
     echo "SCHEDULER PROFILE ALREADY APPLIED!"
   fi
@@ -42,7 +47,3 @@ rbac:
     resource: pods
     verbs:
     - delete
-<<<<<<< HEAD
-=======
-
->>>>>>> 572bf0ee4aac6cd45977cc17b78456038a0a0923
