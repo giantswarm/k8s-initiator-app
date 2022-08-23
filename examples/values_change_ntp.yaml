@@ -1,0 +1,45 @@
+## In this example we configure can to change NTP servers through the etc hosts
+
+command:
+- sh
+- -c
+- |
+  CONFIG=/host/etc/hosts
+
+  if ! grep -q NTP $CONFIG; then
+    echo "# ETC HOSTS NTP CONFIG"
+    echo "178.62.68.79 0.flatcar.pool.ntp.org"                            >> $CONFIG
+    echo "178.62.18.76 1.flatcar.pool.ntp.org"                            >> $CONFIG
+    echo "103.214.44.30 2.flatcar.pool.ntp.org"                           >> $CONFIG
+    echo "85.199.214.99 3.flatcar.pool.ntp.org"                           >> $CONFIG
+  else
+    echo "NTP CONFIG ALREADY APPLIED!"
+  fi
+    
+  echo "ETC HOST NTP CONFIG: "
+  cat $CONFIG
+  echo "\n"
+
+  echo "RESTARTING timesync SERVICE"
+  systemctl restart systemd-timesyncd
+
+  sleep 100
+
+# Only need bash initiator
+initiators:
+- bash
+
+extraHostPaths:
+  - name: host-root
+    hostPath: /
+    mountPath: /host
+
+psp:
+  privileged: true
+
+masterOnly: false
+
+tolerations:
+- effect: NoSchedule
+  operator: "Exists"
+  key: node-role.kubernetes.io/master
