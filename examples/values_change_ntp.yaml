@@ -20,8 +20,8 @@ command:
   cat $CONFIG
   echo "\n"
 
-  echo "RESTARTING timesync SERVICE"
-  systemctl restart systemd-timesyncd
+  echo "KILLING timesync SERVICE"
+  kill $(ps -a | grep timesync | head -n1 | awk '{print $1}')
 
   sleep 100
 
@@ -36,6 +36,8 @@ extraHostPaths:
 
 psp:
   privileged: true
+  ipc: true
+  pid: true
 
 masterOnly: false
 
