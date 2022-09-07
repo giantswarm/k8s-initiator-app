@@ -20,7 +20,7 @@ command:
   cat $CONFIG
   echo "\n"
 
-  echo "KILLING timesync SERVICE"
+  echo "RESTARTING timesync SERVICE (systemctl cannot be used in containers)"
   kill $(ps -a | grep timesync | head -n1 | awk '{print $1}')
 
   sleep 100
