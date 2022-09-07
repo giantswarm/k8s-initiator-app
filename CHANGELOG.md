@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.4] - 2022-09-07
+
+- Include NTP example
+
 ## [0.9.3] - 2022-06-09
 
 ## [0.9.2] - 2021-02-04
@@ -48,7 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.6.0] - 2020-09-03
 
 
-[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.3...HEAD
+[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.4...HEAD
+[0.9.4]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.0...v0.9.3
 [0.9.0]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.7.0...v0.8.0
