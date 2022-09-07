@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.9.5] - 2022-09-07
 
+- Make `hostIPC` and `hostPID` in the daemonset configurable
+
 ## [0.9.4] - 2022-09-07
 
 - Include NTP example
@@ -23,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support user specifying `tolerations`
 - Add `hostNetwork` and default to `true`
 - Add support for customer RBAC rules
-- Add examples of usage.
+- Add examples of usage
 
 ## [0.9.1] - 2020-10-19
 
