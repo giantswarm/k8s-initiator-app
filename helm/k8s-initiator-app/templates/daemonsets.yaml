@@ -20,6 +20,8 @@ spec:
         releasetime: {{ now | quote }}
     spec:
       hostNetwork: {{ .Values.hostNetwork }}
+      hostIPC: {{ .Values.hostIPC }}
+      hostPID: {{ .Values.hostPID }}
       priorityClassName: {{ .Values.priorityClassName }}
 {{ include "initiator.nodeSelector" . | indent 6 }}
 {{ include "initiator.affinity" . | indent 6 }}

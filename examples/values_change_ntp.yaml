@@ -34,6 +34,9 @@ extraHostPaths:
     hostPath: /
     mountPath: /host
 
+hostPID: true
+hostIPC: true
+
 psp:
   privileged: true
   ipc: true
