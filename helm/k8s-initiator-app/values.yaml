@@ -36,6 +36,8 @@ priorityClassName: system-node-critical
 
 psp:
   privileged: false
+  ipc: false
+  pid: false
 
 rbac:
   rules:

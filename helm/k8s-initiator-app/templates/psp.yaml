@@ -22,8 +22,8 @@ spec:
     - 'hostPath'
   allowPrivilegeEscalation: false
   hostNetwork: {{ .Values.hostNetwork }}
-  hostIPC: false
-  hostPID: false
+  hostIPC: {{ .Values.psp.ipc }}
+  hostPID: {{ .Values.psp.pid }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
