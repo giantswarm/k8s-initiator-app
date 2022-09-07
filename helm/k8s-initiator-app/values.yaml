@@ -9,6 +9,8 @@ command:
 extraHostPaths: []
 
 hostNetwork: true
+hostPID: false
+hostIPC: false
 
 image:
   registry: quay.io
