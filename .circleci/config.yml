@@ -25,7 +25,7 @@ workflows:
 
       - architect/push-to-docker:
           name: push-k8s-initiator-to-aliyun-pr
-          image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-initiator"
+          image: "giantswarm-registry.cn-shanghai.cr.aliyuncs.com/giantswarm/k8s-initiator"
           context: architect
           username_envar: "ALIYUN_USERNAME"
           password_envar: "ALIYUN_PASSWORD"
@@ -40,7 +40,7 @@ workflows:
       # Push to Aliyun should execute without manual approval on master.
       - architect/push-to-docker:
           name: push-k8s-initiator-to-aliyun-master
-          image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-initiator"
+          image: "giantswarm-registry.cn-shanghai.cr.aliyuncs.com/giantswarm/k8s-initiator"
           context: architect
           username_envar: "ALIYUN_USERNAME"
           password_envar: "ALIYUN_PASSWORD"
