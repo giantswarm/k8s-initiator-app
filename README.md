@@ -4,6 +4,7 @@ An application that runs as daemonset only in the nodes (master only by default)
 
 ### Examples
 
+- [Audit Policy configuration](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_audit_policy.yaml)
 - [ElasticSearch settings](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_elasticsearch.yaml)
 - [Enable Admission Controller](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_enable_admission_controller.yaml)
 - [Huge pages settings](https://github.com/giantswarm/k8s-initiator-app/blob/master/examples/values_huge_pages.yaml)
