@@ -1,0 +1,148 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "affinity": {
+            "type": "object"
+        },
+        "command": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "extraHostPaths": {
+            "type": "array"
+        },
+        "files": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "global": {
+            "type": "object",
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "properties": {
+                        "enforced": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "hostIPC": {
+            "type": "boolean"
+        },
+        "hostNetwork": {
+            "type": "boolean"
+        },
+        "hostPID": {
+            "type": "boolean"
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "k8sInitiatorContainerImage": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "pauseContainerImage": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "registry": {
+                    "type": "string"
+                }
+            }
+        },
+        "initiators": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "masterOnly": {
+            "type": "boolean"
+        },
+        "nodeSelector": {
+            "type": "object"
+        },
+        "priorityClassName": {
+            "type": "string"
+        },
+        "psp": {
+            "type": "object",
+            "properties": {
+                "ipc": {
+                    "type": "boolean"
+                },
+                "pid": {
+                    "type": "boolean"
+                },
+                "privileged": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "rbac": {
+            "type": "object",
+            "properties": {
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apiGroup": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "resource": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "verbs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "resources": {
+            "type": "object"
+        },
+        "tolerations": {
+            "type": "object"
+        }
+    }
+}

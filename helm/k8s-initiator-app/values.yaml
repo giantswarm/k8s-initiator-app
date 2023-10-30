@@ -21,6 +21,10 @@ image:
     name: giantswarm/pause-amd64
     tag: 3.3
 
+global:
+  podSecurityStandards:
+    enforced: false
+
 initiators:
   - bash
   - k8s
