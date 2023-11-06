@@ -1,0 +1,21 @@
+{{- if .Values.kyvernoPolicyExceptions.enabled }}
+  {{- if .Capabilities.APIVersions.Has "policy.giantswarm.io/v1alpha1/PolicyException" -}}
+apiVersion: policy.giantswarm.io/v1alpha1
+kind: PolicyException
+metadata:
+  name: {{ template "initiator.fullname" . }}
+  namespace: policy-exceptions
+spec:
+  policies:
+  - disallow-capabilities-strict
+  - restrict-seccomp-strict
+  - require-run-as-nonroot
+  - disallow-privilege-escalation
+  targets:
+  - kind: DaemonSet
+    names:
+    - {{ template "initiator.fullname" . }}*
+    namespaces:
+    - {{ $.Release.Namespace }}
+  {{- end -}}
+{{- end -}}

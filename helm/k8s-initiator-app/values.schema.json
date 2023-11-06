@@ -78,6 +78,14 @@
                 "type": "string"
             }
         },
+        "kyvernoPolicyExceptions": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+                "type": "boolean"
+            }
+          }
+        },
         "masterOnly": {
             "type": "boolean"
         },

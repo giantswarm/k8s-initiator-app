@@ -21,6 +21,9 @@ image:
     name: giantswarm/pause-amd64
     tag: 3.3
 
+kyvernoPolicyExceptions:
+  enabled: true
+
 global:
   podSecurityStandards:
     enforced: false
