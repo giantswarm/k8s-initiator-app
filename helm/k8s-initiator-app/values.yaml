@@ -16,7 +16,7 @@ image:
   registry: quay.io
   k8sInitiatorContainerImage:
     name: giantswarm/k8s-initiator
-    tag: [[ .Version ]]
+    tag: v0.9.6
   pauseContainerImage:
     name: giantswarm/pause-amd64
     tag: 3.3
