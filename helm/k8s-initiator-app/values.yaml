@@ -16,10 +16,13 @@ image:
   registry: quay.io
   k8sInitiatorContainerImage:
     name: giantswarm/k8s-initiator
-    tag: [[ .Version ]]
+    tag: 0.9.6
   pauseContainerImage:
     name: giantswarm/pause-amd64
     tag: 3.3
+
+kyvernoPolicyExceptions:
+  enabled: true
 
 global:
   podSecurityStandards:
