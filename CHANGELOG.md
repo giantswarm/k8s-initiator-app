@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.9.6] - 2023-11-07
 
+### Added
+
+- Policy Exception that enables PSS transition
+
 ### Changed
 
 - Replace condition for PSP CR installation.
