@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.6] - 2023-11-07
+
 ### Changed
 
 - Replace condition for PSP CR installation.
@@ -58,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.6.0] - 2020-09-03
 
 
-[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.5...HEAD
+[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.6...HEAD
+[0.9.6]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.5...v0.9.6
 [0.9.5]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.0...v0.9.3
