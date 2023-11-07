@@ -8,9 +8,13 @@ metadata:
 spec:
   policies:
   - disallow-capabilities-strict
-  - restrict-seccomp-strict
-  - require-run-as-nonroot
   - disallow-privilege-escalation
+  - disallow-host-namespaces
+  - disallow-host-path
+  - restrict-seccomp-strict
+  - require-run-as-non-root-user
+  - require-run-as-nonroot
+  - restrict-volume-types
   targets:
   - kind: DaemonSet
     names:
