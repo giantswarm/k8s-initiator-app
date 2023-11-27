@@ -3,7 +3,7 @@ apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
   name: {{ template "initiator.fullname" . }}
-  namespace: policy-exceptions
+  namespace: {{ $.Release.Namespace }}
   labels:
     app: {{ template "initiator.fullname" . }}
 spec:
