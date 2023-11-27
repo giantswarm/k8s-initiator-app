@@ -1,25 +1,45 @@
-{{- if .Values.kyvernoPolicyExceptions.enabled }}
-  {{- if .Capabilities.APIVersions.Has "policy.giantswarm.io/v1alpha1/PolicyException" -}}
-apiVersion: policy.giantswarm.io/v1alpha1
+{{- if .Values.global.podSecurityStandards.enforced }}
+apiVersion: policy.giantswarm.io/v2alpha1
 kind: PolicyException
 metadata:
   name: {{ template "initiator.fullname" . }}
   namespace: policy-exceptions
+  labels:
+    app: {{ template "initiator.fullname" . }}
 spec:
-  policies:
-  - disallow-capabilities-strict
-  - disallow-privilege-escalation
-  - disallow-host-namespaces
-  - disallow-host-path
-  - restrict-seccomp-strict
-  - require-run-as-non-root-user
-  - require-run-as-nonroot
-  - restrict-volume-types
-  targets:
-  - kind: DaemonSet
-    names:
-    - {{ template "initiator.fullname" . }}*
-    namespaces:
-    - {{ $.Release.Namespace }}
-  {{- end -}}
+  exceptions:
+    - policyName: disallow-capabilities-strict
+      ruleNames:
+        - autogen-require-drop-all
+    - policyName: disallow-host-namespaces
+      ruleNames:
+        - autogen-host-namespaces
+    - policyName: disallow-host-path
+      ruleNames:
+        - autogen-host-path
+    - policyName: disallow-privilege-escalation
+      ruleNames:
+        - autogen-privilege-escalation
+    - policyName: require-run-as-non-root-user
+      ruleNames:
+        - autogen-run-as-non-root-user
+    - policyName: require-run-as-nonroot
+      ruleNames:
+        - autogen-run-as-non-root
+    - policyName: restrict-seccomp-strict
+      ruleNames:
+        - autogen-check-seccomp-strict
+    - policyName: restrict-volume-types
+      ruleNames:
+        - autogen-restricted-volumes
+  match:
+    any:
+      - resources:
+          kinds:
+            - DaemonSet
+            - Pod
+          names:
+          - {{ template "initiator.fullname" . }}*
+          namespaces:
+          - {{ $.Release.Namespace }}
 {{- end -}}
