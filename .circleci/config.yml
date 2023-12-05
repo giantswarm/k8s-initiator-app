@@ -8,19 +8,12 @@ workflows:
       - architect/push-to-registries:
           context: architect
           name: push-to-registries
+          image: giantswarm/k8s-initiator
           requires:
             - hold-push-k8s-initiator-to-aliyun-pr
           filters:
             tags:
               only: /^v.*/
-
-          image: giantswarm/k8s-initiator
-      - hold-push-k8s-initiator-to-aliyun-pr:
-          type: approval
-          # Needed to prevent job from being triggered on master branch.
-          filters:
-            branches:
-              ignore: master
 
       - architect/push-to-app-catalog:
           name: "package and push k8s-initiator-app chart"
