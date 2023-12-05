@@ -9,8 +9,6 @@ workflows:
           context: architect
           name: push-to-registries
           image: giantswarm/k8s-initiator
-          requires:
-            - hold-push-k8s-initiator-to-aliyun-pr
           filters:
             tags:
               only: /^v.*/
