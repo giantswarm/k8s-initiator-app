@@ -63,4 +63,4 @@ rbac:
 # container resources
 resources: {}
 
-tolerations: {}
+tolerations: []
