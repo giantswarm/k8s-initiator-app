@@ -144,7 +144,10 @@
             "type": "object"
         },
         "tolerations": {
-            "type": "object"
+            "type": "array",
+            "items": {
+                "type": "object"
+            }
         }
     }
 }
