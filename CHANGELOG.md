@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Documentation of features migration towards CAPA
+
 ## [0.9.8] - 2024-04-18
 
 ## [0.9.7] - 2023-11-27
