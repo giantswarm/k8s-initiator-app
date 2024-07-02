@@ -8,6 +8,7 @@ metadata:
     app: {{ template "initiator.fullname" . }}
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
+    "giantswarm.io/exception-reason": "The initiator app may need access to network interfaces or kernel settings, access to host filesystem, needs to run privileged commands and use temporal volumes."
 spec:
   exceptions:
     - policyName: disallow-capabilities-strict
