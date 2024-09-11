@@ -1,6 +1,6 @@
 FROM alpine:3.20.2
 
-RUN apk add --no-cache curl jq gcompact
+RUN apk add --no-cache curl jq gcompat
 
 ARG KUBERNETES_VERSION=v1.28.3
 ADD https://dl.k8s.io/$KUBERNETES_VERSION/kubernetes-client-linux-amd64.tar.gz /tmp
