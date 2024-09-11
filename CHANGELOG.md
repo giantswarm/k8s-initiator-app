@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+###  Changed
+
+- Add `gcompact`.
+
 ### Added
 
 - Documentation of features migration towards CAPA
