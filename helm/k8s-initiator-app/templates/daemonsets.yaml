@@ -23,6 +23,7 @@ spec:
       hostIPC: {{ .Values.hostIPC }}
       hostPID: {{ .Values.hostPID }}
       priorityClassName: {{ .Values.priorityClassName }}
+      privileged: {{ .Values.privileged }}
 {{ include "initiator.nodeSelector" . | indent 6 }}
 {{ include "initiator.affinity" . | indent 6 }}
 {{ include "initiator.tolerations" . | indent 6 }}

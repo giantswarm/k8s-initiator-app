@@ -43,6 +43,8 @@ nodeSelector: {}
 # Make room to run the pod
 priorityClassName: system-node-critical
 
+privileged: false
+
 psp:
   privileged: false
   ipc: false
