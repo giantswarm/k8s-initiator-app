@@ -7,7 +7,7 @@ In CAPA by design the `auditd` setting will always be disabled and can be toggle
 
 As some customers are creating a workaround with `k8s-initiator-app`, we would like to also include this in the migration procedure in order to facilitate any setting that has been configured on Vintage.
 
-Below you can find a snippet of the configuration which will allow customers to control this setting before migrating to CAPA via `migration-configuration-{cluster_name}.yaml` configmap:
+Below you can find a snippet of the configuration which will allow customers to control this setting (i.e. turn auditd back on) before migrating to CAPA via `migration-configuration-{cluster_name}.yaml` configmap:
 
 ```
 apiVersion: v1
