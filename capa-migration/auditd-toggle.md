@@ -19,6 +19,6 @@ data:
   values: |
     global:
       components:
-        audit:
+        auditd:
           enabled: true
 ```
