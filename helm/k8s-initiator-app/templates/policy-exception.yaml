@@ -43,6 +43,10 @@ spec:
       ruleNames:
         - autogen-restricted-volumes
         - restricted-volumes
+    - policyName: disallow-privileged-containers
+      ruleNames:
+        - autogen-privileged-containers
+        - privileged-containers
   match:
     any:
       - resources:
