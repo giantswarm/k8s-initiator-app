@@ -52,7 +52,7 @@ data:
                 - name: PodNodeSelector
                   config: |
                     podNodeSelectorPluginConfig:
-                      clusterDefaultNodeSelector: giantswarm.io/machine-pool={cluster_name}-{machine_pool_name}
+                      clusterDefaultNodeSelector: giantswarm.io/machine-deployment={machine_pool_name}
 ```
 
 If you already used the `clusterDefaultNodeSelector` before, the `k8s-initiator-app` already setup the `kube-system` and `giantswarm` namespaces to ignore that. On new clusters, you will need to manually add the according annotations to ignore the `clusterDefaultNodeSelector`:
