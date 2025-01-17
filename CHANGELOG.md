@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.1] - 2025-01-17
+
 ### Fixed
 
 - Fix CAPA migration documentation on admission controllers.
@@ -92,7 +94,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.6.0] - 2020-09-03
 
 
-[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.0...HEAD
+[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.1...HEAD
+[0.11.1]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.8...v0.10.0
 [0.9.8]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.7...v0.9.8
