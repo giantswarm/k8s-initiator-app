@@ -9,5 +9,5 @@ sources:
 - https://github.com/giantswarm/k8s-initiator-app
 - https://raw.githubusercontent.com/giantswarm/k8s-initiator-app/v[[ .Version ]]/README.md
 annotations:
-  application.giantswarm.io/team: team-horizon
+  application.giantswarm.io/team: team-planeteers
 version: [[ .Version ]]
