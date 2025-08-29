@@ -13,7 +13,7 @@ hostPID: false
 hostIPC: false
 
 image:
-  registry: quay.io
+  registry: gsoci.azurecr.io
   k8sInitiatorContainerImage:
     name: giantswarm/k8s-initiator
     tag: 0.10.0
