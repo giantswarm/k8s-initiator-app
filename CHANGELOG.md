@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Change image registry from quay.io to gsoci.azurecr.io
+
 ## [0.11.1] - 2025-01-17
 
 ### Fixed
