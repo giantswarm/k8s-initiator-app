@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.2] - 2025-08-29
+
 ### Changed
 
 - Change image registry from quay.io to gsoci.azurecr.io
@@ -98,7 +100,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.6.0] - 2020-09-03
 
 
-[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.1...HEAD
+[Unreleased]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.2...HEAD
+[0.11.2]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/giantswarm/k8s-initiator-app/compare/v0.9.8...v0.10.0
