@@ -1,8 +1,8 @@
-# DEPRECATED: k8s-initiator-app
-WARNING: This app is deprecated and is not supported in CAPI Giantswarm platform
+# DEPRECATED: k8s-initiator-app (archieved on 18 Sept 2025)
+WARNING: This app is deprecated and is not supported in the CAPI Giantswarm platform
 
 
-An application that runs as daemonset only in the nodes (master only by default) to maintain the state of some Kubernetes resources through cluster upgrades or master replacements.
+An application that runs as a daemonset only in the nodes (master only by default) to maintain the state of some Kubernetes resources through cluster upgrades or master replacements.
 
 ### Examples
 
